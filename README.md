@@ -1,10 +1,10 @@
 # Analysistant
 
-![todo](assets/../src/assets/banner.jpeg)
+![todo](assets/../src/assets/anal_cover.jpg)
 
 ## Live Demo
 
-[here](https://tannerhornsby7.github.io/odin-todo/)
+[here](https://tannerhornsby7.github.io/odin-Analysistant/)
 
 ## Description
 

@@ -8,6 +8,7 @@ const isProduction = process.env.NODE_ENV == "production";
 const config = {
   entry: {
     index: "./src/index.js",
+    layout: "./src/layout.js"
   },
   devtool: "inline-source-map",
   output: {
