@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-[here](https://tannerhornsby7.github.io/odin-Analysistant/)
+[here](https://tannerhornsby7.github.io/Analysistant/)
 
 ## Description
 
