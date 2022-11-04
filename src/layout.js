@@ -1,4 +1,6 @@
 import { doc } from "prettier";
+import { search } from "./search";
+import "./style.scss";
 
 // make dom element
 export class Element {
@@ -32,6 +34,10 @@ export class Layout {
         this.content = content;
     }
 
+    resetDOM() {
+        document.body.textContent = '';
+    }
+
     setDOM() {
         // setting body
         const body = document.body;
@@ -47,15 +53,32 @@ export class Layout {
             window.location.href = "https://github.com/TannerHornsby7/Analysistant";
         };
         
-        const s = new Element('div', 'searchsect')
         const search_bar = document.createElement('input');
         const search_btn = document.createElement('button');
+        search_btn.id = 'search_btn';
+
+        function commence_search() {
+            console.log('clicked');
+            
+            const definitions = search(search_bar.value);
+            const definition_sect = new Element('div', 'definitions', definitions);
+            
+            const update = new Layout(definition_sect.getDOM());
+            update.resetDOM();
+            update.setDOM();
+        };
+
+        search_btn.onclick = commence_search;
+        search_bar.addEventListener("keydown", function (e) {
+            if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+                commence_search();
+            }
+        });
+
         search_btn.textContent = 'SEARCH 🔍'
         search_bar.placeholder = 'Paste Your Question Here!'
-
+        const s = new Element('div', 'searchsect', [search_bar, search_btn]);
         const search_sect = s.getDOM();
-        search_sect.appendChild(search_bar);
-        search_sect.appendChild(search_btn);
 
         const bottag = document.createElement('h6');
         bottag.textContent = 'Tanner Hornsby';

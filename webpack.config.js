@@ -6,11 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
-  entry: {
-    index: "./src/index.js",
-    layout: "./src/layout.js"
-  },
-  devtool: "inline-source-map",
+  entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
   },
@@ -35,10 +31,30 @@ const config = {
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
+        // use: [
+        //   {
+        //     loader: 'file-loader',
+        //   }
+        // ]
       },
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
+    ],
+  },
+};
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
 };
