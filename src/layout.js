@@ -52,9 +52,10 @@ export class Layout {
             console.log('clicked');
             window.location.href = "https://github.com/TannerHornsby7/Analysistant";
         };
-        
+        const cta = document.createElement('h3');
         const search_bar = document.createElement('input');
         const search_btn = document.createElement('button');
+        cta.textContent = 'Enter Your Question Below, We will search for the relevant definitions that can help with your proof!';
         search_btn.id = 'search_btn';
 
         function commence_search() {
@@ -66,6 +67,8 @@ export class Layout {
             const update = new Layout(definition_sect.getDOM());
             update.resetDOM();
             update.setDOM();
+            const question = document.getElementById('question');
+            question.textContent = 'Question: ' + search_bar.value;
         };
 
         search_btn.onclick = commence_search;
@@ -77,7 +80,12 @@ export class Layout {
 
         search_btn.textContent = 'SEARCH 🔍'
         search_bar.placeholder = 'Paste Your Question Here!'
-        const s = new Element('div', 'searchsect', [search_bar, search_btn]);
+        const searchit = new Element('div', 'searchsect', [search_bar, search_btn])
+        const q = document.createElement('h3');
+        q.id = 'question';
+        q.textContent = '';
+
+        const s = new Element('div', 'hero', [cta, searchit.getDOM(), q]);
         const search_sect = s.getDOM();
 
         const bottag = document.createElement('h6');

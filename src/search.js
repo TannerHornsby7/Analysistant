@@ -1,4 +1,6 @@
 import "./style.scss";
+import del from './assets/del.png';
+import flag from './assets/flag.png';
 import accumulation_point from './assets/chapter3/accumulation_point.png';
 import bolzano_weierstrass from './assets/chapter3/bolzano-weierstrass.png';
 import boundary_point from './assets/chapter3/boundary_point.png';
@@ -26,6 +28,7 @@ import open_ball_metric_space from './assets/chapter3/open_ball-metric-space.png
 import open_set_metric_space from './assets/chapter3/open_set-metric-space.png';
 import pointwise_limit from './assets/chapter3/pointwise_limit.png';
 import unit_ball from './assets/chapter3/unit_ball.png';
+import { Element } from './layout'
 
 // term collection
 const terms = [
@@ -156,12 +159,38 @@ export function search(words) {
     for (var word in words) {
         for(const url in terms_hash[words[word]]) {
             const def = document.createElement('img');
+            const d_key = terms_hash[words[word]][url];
             def.classList.add('definition');
-            if (used_terms.includes(terms_hash[words[word]][url]) == false) {
-                used_terms.push(terms_hash[words[word]][url]);
-                def.src = terms_hash[words[word]][url];
-                def.id = word + url;
-                definitions.push(def);
+            if (used_terms.includes(d_key) == false) {
+                // collect reused definitions
+                used_terms.push(d_key);
+                def.src = d_key;
+                def.id = d_key; // change id's to be
+
+                // add deletion functionality
+                const dele = document.createElement('img');
+                dele.src = del;
+                dele.title = 'Remove This Definition';
+                dele.classList.add('delete');
+                dele.id = d_key;
+                dele.addEventListener('click', ()=>{
+                    const def_to_del = document.getElementById(d_key);
+                    console.log(def_to_del)
+                    def_to_del.remove();
+                });
+                
+                // add flagging functionality
+                const fla = document.createElement('img');
+                fla.src = flag;
+                fla.title = 'Flag This Definition';
+                fla.classList.add('flag')
+                fla.id = d_key;
+                const def_sect = new Element('div', 'def_sect', [fla, def, dele]);
+                const def_section = def_sect.getDOM();
+                def_section.id = d_key;
+            
+                // add node to definitions node list
+                definitions.push(def_section);
             }
         }
     }

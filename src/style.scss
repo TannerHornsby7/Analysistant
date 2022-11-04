@@ -46,31 +46,39 @@ body {
   }
 }
 
-.searchsect {
-  @include theme(false);
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-  input {
-    background-color: whitesmoke;
-    color: $darkcolor;
-    width: 70%;
-    height: 50px;
-    padding: 10px;
-
+.hero{
+  min-height: minmax(min-content, 600px);
+  h3 {
+    margin: 15px;
+    align-self: center;
   }
+  @include theme(false);
+  display: flex;
+  flex-direction: column;
+  .searchsect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    input {
+      background-color: whitesmoke;
+      color: $darkcolor;
+      width: 70%;
+      height: 50px;
+      padding: 10px;
   
-  button {
-    height: 50px;
-    width: 20%;
-    @include theme;
-    border: 2px solid $darkcolor;
-
-    &:hover {
-      @include theme(false);
-      cursor: pointer;
+    }
+    
+    button {
+      height: 50px;
+      width: 20%;
+      @include theme;
+      border: 2px solid $darkcolor;
+  
+      &:hover {
+        @include theme(false);
+        cursor: pointer;
+      }
     }
   }
 }
@@ -78,12 +86,36 @@ body {
 .definitions {
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(autofit, minmax(100px, 1fr));
   gap: 5px;
-  .definition {
-    width: 90%;
+  padding: 15px;
+  .def_sect {
+    // overflow-x: scroll;
     border: 2px solid $darkcolor;
+    display: grid;
+    grid-template-columns: 1fr 30fr 1fr;
+    width: 90%;
+    .definition {
+      height: minmax(min-content, 600px);
+      width: 90%;
+      overflow: scroll;
+      align-self: center;
+      justify-self: center;
+    }
+    .delete,
+    .flag {
+      
+      margin: 15px;
+      width: 20px;
+      height: 20px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
   }
+}
+
+#question {
+  font-size: 20px;
 }
 
 .footer {
